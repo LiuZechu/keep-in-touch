@@ -6,11 +6,10 @@ A small bilingual (English + 中文) contact page — WeChat, WhatsApp, Telegram
 
 Edit [`config.js`](config.js). Leave a value empty (`""`) to hide that row.
 
-- **WeChat** — your WeChat ID; optionally drop a QR image (e.g. `wechat-qr.png`) next to `index.html` and set `qr: "wechat-qr.png"` to show it in a pop-up.
+- **WeChat** — your WeChat ID, plus `qr` pointing at the QR image (`wechat-qr.jpg`) shown in a pop-up when the card is tapped.
 - **WhatsApp** — your number with country code.
 - **Telegram / Instagram** — username without the `@`.
 - **LinkedIn** — the part after `linkedin.com/in/`.
-- **Photo** — put `avatar.jpg` next to `index.html` and set `avatar: "avatar.jpg"`; otherwise your initials are shown.
 
 Then commit and push — GitHub Pages redeploys in about a minute.
 

@@ -46,28 +46,28 @@
 
   var PLATFORMS = [
     {
-      key: "wechat", en: "WeChat", zh: "微信", brand: "#07C160",
+      key: "wechat", en: "WeChat", brand: "#07C160",
       value: function (c) { return clean(c.id); },
       handle: function (c) { return clean(c.id); },
       copy: function (c) { return clean(c.id); },
       action: "wechat"
     },
     {
-      key: "whatsapp", en: "WhatsApp", zh: "", brand: "#25D366",
+      key: "whatsapp", en: "WhatsApp", brand: "#25D366",
       value: function (c) { return digits(c.number); },
       handle: function (c) { return String(c.number).trim(); },
       copy: function (c) { return String(c.number).trim(); },
       href: function (c) { return "https://wa.me/" + digits(c.number); }
     },
     {
-      key: "telegram", en: "Telegram", zh: "电报", brand: "#2AABEE",
+      key: "telegram", en: "Telegram", brand: "#2AABEE",
       value: function (c) { return clean(c.username); },
       handle: function (c) { return "@" + clean(c.username); },
       copy: function (c) { return "@" + clean(c.username); },
       href: function (c) { return "https://t.me/" + clean(c.username); }
     },
     {
-      key: "instagram", en: "Instagram", zh: "",
+      key: "instagram", en: "Instagram",
       brand: "linear-gradient(45deg, #FEC564 0%, #F9733E 30%, #E1306C 60%, #A537B8 100%)",
       value: function (c) { return clean(c.username); },
       handle: function (c) { return "@" + clean(c.username); },
@@ -75,7 +75,7 @@
       href: function (c) { return "https://www.instagram.com/" + clean(c.username) + "/"; }
     },
     {
-      key: "linkedin", en: "LinkedIn", zh: "领英", brand: "#0A66C2",
+      key: "linkedin", en: "LinkedIn", brand: "#0A66C2",
       value: function (c) { return clean(c.slug); },
       handle: function (c) { return "in/" + clean(c.slug); },
       copy: function (c) { return "https://www.linkedin.com/in/" + clean(c.slug) + "/"; },
@@ -89,22 +89,6 @@
     });
   }
 
-  /* ---------- name & avatar ---------- */
-  var name = SITE.name || {};
-  var h1 = document.getElementById("name");
-  h1.querySelector(".en").textContent = name.en || "";
-  h1.querySelector(".zh").textContent = name.zh || "";
-
-  var avatar = document.getElementById("avatar");
-  if (SITE.avatar) {
-    var img = new Image();
-    img.alt = name.en || "";
-    img.src = SITE.avatar;
-    avatar.appendChild(img);
-  } else {
-    avatar.textContent = SITE.initials || (name.en || "").split(/\s+/).map(function (w) { return w[0]; }).join("").slice(0, 2);
-  }
-
   /* ---------- contact cards ---------- */
   var list = document.getElementById("contacts");
   var i = 0;
@@ -113,9 +97,7 @@
     var c = C[p.key];
     if (!c || !p.value(c)) return;
 
-    var label =
-      '<span class="label"><span>' + p.en + "</span>" +
-      (p.zh ? '<span class="zh" lang="zh-CN">' + p.zh + "</span>" : "") + "</span>";
+    var label = '<span class="label">' + p.en + "</span>";
     var inner =
       '<span class="tile">' + ICONS[p.key] + "</span>" +
       '<span class="meta">' + label + '<span class="handle">' + esc(p.handle(c)) + "</span></span>" +
@@ -158,16 +140,6 @@
     document.getElementById("qr-close").addEventListener("click", function () { dialog.close(); });
     dialog.addEventListener("click", function (e) { if (e.target === dialog) dialog.close(); });
   }
-
-  /* ---------- share ---------- */
-  document.getElementById("share").addEventListener("click", function () {
-    var data = { title: document.title, url: location.href };
-    if (navigator.share) {
-      navigator.share(data).catch(function () {});
-    } else {
-      copy(location.href, "Link copied! · 链接已复制！");
-    }
-  });
 
   /* ---------- copy + toast ---------- */
   function copy(text, message) {

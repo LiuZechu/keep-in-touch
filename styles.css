@@ -55,88 +55,31 @@ body {
   z-index: 1;
   max-width: 540px;
   margin: 0 auto;
-  padding: 56px 16px 40px;
+  padding: 64px 16px 40px;
 }
 
 /* ---------- hero ---------- */
 .hero { text-align: center; }
 
-.avatar-wrap { position: relative; width: 112px; height: 112px; margin: 0 auto 18px; animation: pop .7s cubic-bezier(.2, .9, .3, 1.3) both; }
-.avatar {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--sun), var(--coral));
-  display: grid;
-  place-items: center;
-  color: #fff;
-  font-size: 40px;
-  font-weight: 800;
-  letter-spacing: 0.02em;
-  box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.9), var(--shadow);
-  overflow: hidden;
-}
-.avatar img { width: 100%; height: 100%; object-fit: cover; }
-.wave {
-  position: absolute;
-  right: -8px;
-  bottom: 0;
-  font-size: 34px;
-  transform-origin: 70% 70%;
-  animation: wave 2.6s ease-in-out 0.8s infinite;
-}
-@keyframes wave {
-  0%, 60%, 100% { transform: rotate(0); }
-  10%, 30% { transform: rotate(14deg); }
-  20% { transform: rotate(-8deg); }
-  40% { transform: rotate(-4deg); }
-  50% { transform: rotate(10deg); }
-}
-@keyframes pop { from { opacity: 0; transform: scale(.6); } }
-
-.hello {
-  display: inline-flex;
-  gap: 0.45em;
-  align-items: center;
-  margin: 0;
-  padding: 6px 14px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.75);
-  border: 1px solid var(--line);
-  color: var(--coral-ink);
-  font-weight: 700;
-  font-size: 14px;
-}
-.dot { opacity: 0.5; }
-
-h1 {
-  margin: 14px 0 0;
-  font-size: clamp(32px, 8vw, 42px);
-  line-height: 1.1;
-  letter-spacing: -0.01em;
-  font-weight: 800;
-}
-h1 .zh {
-  display: block;
-  margin-top: 6px;
-  font-size: 0.55em;
-  font-weight: 600;
-  color: var(--muted);
-  letter-spacing: 0.12em;
-}
-
 .tagline {
-  margin: 20px 0 0;
-  font-size: 21px;
+  margin: 8px 0 0;
+  font-size: clamp(34px, 9vw, 46px);
   font-weight: 800;
-  line-height: 1.3;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  animation: rise 0.7s cubic-bezier(.2, .8, .3, 1) both;
+}
+.tagline span {
+  display: table;
+  margin: 0 auto;
   background: linear-gradient(90deg, var(--coral-ink), #F59A23);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
-.tagline span { display: block; }
-.tagline .zh { font-size: 0.9em; font-weight: 700; }
+.tagline .zh { margin-top: 8px; font-size: 0.66em; font-weight: 700; letter-spacing: 0.08em; }
+
+.dot { opacity: 0.5; }
 
 .note {
   margin: 18px auto 0;
@@ -163,17 +106,6 @@ h1 .zh {
   font-weight: 800;
 }
 .section-title .zh { font-weight: 600; color: var(--muted); font-size: 15px; }
-
-.hint {
-  margin: 4px 0 0;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 2px 16px;
-  font-size: 12.5px;
-  color: var(--muted);
-}
-.hint-icon { width: 13px; height: 13px; vertical-align: -2px; fill: none; stroke: currentColor; stroke-width: 2; }
 
 .contacts { list-style: none; margin: 16px 0 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; }
 
@@ -227,8 +159,7 @@ h1 .zh {
 .tile .cut { fill: var(--cut, var(--brand)); }
 
 .meta { min-width: 0; flex: 1; }
-.label { display: flex; align-items: baseline; gap: 8px; font-weight: 700; font-size: 16.5px; line-height: 1.3; }
-.label .zh { font-weight: 500; font-size: 14px; color: var(--muted); }
+.label { display: block; font-weight: 700; font-size: 16.5px; line-height: 1.3; }
 .handle {
   display: block;
   margin-top: 2px;
@@ -261,27 +192,7 @@ h1 .zh {
 /* ---------- footer ---------- */
 .footer { margin-top: 36px; text-align: center; }
 
-.share {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45em;
-  padding: 12px 22px;
-  border: 0;
-  border-radius: 999px;
-  background: linear-gradient(135deg, var(--sun), var(--coral));
-  color: #fff;
-  font: inherit;
-  font-weight: 700;
-  font-size: 15px;
-  cursor: pointer;
-  box-shadow: 0 10px 24px -10px rgba(255, 110, 60, 0.7);
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-.share:hover { transform: translateY(-2px); box-shadow: 0 14px 28px -10px rgba(255, 110, 60, 0.8); }
-.share svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
-.share .dot { opacity: 0.7; }
-
-.thanks { margin: 18px 0 0; font-size: 14px; color: var(--muted); }
+.thanks { margin: 0; font-size: 14px; color: var(--muted); }
 
 /* ---------- WeChat QR dialog ---------- */
 .qr {
